@@ -68,10 +68,10 @@ void GameState::Draw() {
             DrawText("Waiting for other player", 42, 42, 20, WHITE);
         break;
 
-        case GS_OPPONANT_TURN:
+        case GS_OPPONENT_TURN:
         case GS_PLAYER_TURN:
-            if(m_gamestate == GS_OPPONANT_TURN)
-                DrawText("Opponant turn", 20, 20, 20, YELLOW);
+            if(m_gamestate == GS_OPPONENT_TURN)
+                DrawText("Opponent turn", 20, 20, 20, YELLOW);
             else
                 DrawText("Your turn", 20, 20, 20, RED);
             DrawText("You are red", 20, 45, 20, RED);
@@ -102,7 +102,7 @@ void GameState::OnReceive(ENetEvent& event) {
         break;
 
         case ID_WAITING:
-            m_gamestate = GS_OPPONANT_TURN;
+            m_gamestate = GS_OPPONENT_TURN;
         break;
 
         case ID_REQUEST_PLAY:

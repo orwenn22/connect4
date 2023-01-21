@@ -8,7 +8,7 @@
 enum GameStatesID {
     GS_WAITING_PLAYER_CONNECTION,
     GS_PLAYER_TURN,
-    GS_OPPONANT_TURN
+    GS_OPPONENT_TURN
 };
 
 class GameState : public State , public DefaultClient {
