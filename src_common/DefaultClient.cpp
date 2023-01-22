@@ -6,7 +6,7 @@ DefaultClient::DefaultClient(const char* hostName, enet_uint16 port) {
     m_client = enet_host_create(NULL, 1, 1, 0, 0);
     if(m_client == NULL) {
         fprintf (stderr, "An error occurred while creating an ENet client.\n");
-        m_ready = false;
+        m_clientready = false;
         return;
     }
 
@@ -16,7 +16,7 @@ DefaultClient::DefaultClient(const char* hostName, enet_uint16 port) {
     m_peer = enet_host_connect(m_client, &m_address, 1, 0);
     if(m_peer == NULL) {
         fprintf (stderr, "Failed to connect to the peer.\n");
-        m_ready = false;
+        m_clientready = false;
         return;
     }
 
@@ -27,16 +27,16 @@ DefaultClient::DefaultClient(const char* hostName, enet_uint16 port) {
     else {
         enet_peer_reset(m_peer);
         printf("connection failed\n");
-        m_ready = false;
+        m_clientready = false;
         return;
     }
 
-    m_ready = true;
+    m_clientready = true;
 }
 
 //This will correctly disconnect the client host (m_client) from the server (m_peer)
 DefaultClient::~DefaultClient() {
-    if(!m_ready) return;
+    if(!m_clientready) return;
     
     printf("disconnecting...\n"),
     enet_peer_disconnect(m_peer, 0);
@@ -69,7 +69,7 @@ DefaultClient::~DefaultClient() {
 //Handle packets
 
 void DefaultClient::ClientDoTick() {
-    if(!m_ready) return;
+    if(!m_clientready) return;
 
     ENetEvent event;
     while(enet_host_service(m_client, &event, 10) > 0) {

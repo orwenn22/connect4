@@ -10,13 +10,13 @@ DefaultServer::DefaultServer(enet_uint16 port) {
     if (m_server == NULL)
     {
         fprintf (stderr, "An error occurred while trying to create an ENet server host.\n");
-        m_ready = false;
-        m_running = false;
+        m_serverready = false;
+        m_serverrunning = false;
         return;
     }
 
-    m_ready = true;
-    m_running = true;
+    m_serverready = true;
+    m_serverrunning = true;
 }
 
 DefaultServer::~DefaultServer() {
@@ -34,13 +34,13 @@ DefaultServer::~DefaultServer() {
 
 
 void DefaultServer::ServerRun() {
-    while(m_running) {
+    while(m_serverrunning) {
         ServerDoTick();
     }
 }
 
 void DefaultServer::ServerDoTick() {
-    if(!m_ready) return;
+    if(!m_serverready) return;
 
     ENetEvent event;
 

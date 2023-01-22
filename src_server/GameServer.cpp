@@ -13,7 +13,7 @@ GameServer::GameServer(enet_uint16 port) : DefaultServer(port) {
 }
 
 void GameServer::ServerRun() {
-    while(m_running) {
+    while(m_serverrunning) {
         ServerDoTick();
 
         if(m_gamestarted == false) {

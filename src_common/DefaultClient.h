@@ -17,7 +17,7 @@ class DefaultClient {
     ENetAddress m_address;
     ENetPeer* m_peer;
 
-    bool m_ready;
+    bool m_clientready;
 };
 
 #endif

@@ -18,9 +18,9 @@ class DefaultServer {
     ENetAddress m_address;
     ENetHost * m_server;
 
-    bool m_ready;
+    bool m_serverready;
 
-    bool m_running;
+    bool m_serverrunning;
 };
 
 

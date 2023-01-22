@@ -26,7 +26,7 @@ GameState::GameState(char* hostName, unsigned short port) : State() , DefaultCli
 }
 
 void GameState::OnParrentAdd() {
-    if(m_ready == false) {  //check if the connection was successful
+    if(m_clientready == false) {  //check if the connection was successful
         printf("NO >:(\n");
         m_manager->SetState(new MenuState("Connection failed"));
         return;
