@@ -10,7 +10,7 @@ int main() {
     atexit(enet_deinitialize);
 
     GameServer myserver(1234);
-    myserver.Run();
+    myserver.ServerRun();
 
     return 0;
 }

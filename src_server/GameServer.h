@@ -9,10 +9,10 @@ class GameServer : public DefaultServer {
     public:
     GameServer(enet_uint16 port);
 
-    void Run() override;
-    void OnConnect(ENetEvent& event) override;
-    void OnDisconnect(ENetEvent& event) override;
-    void OnReceive(ENetEvent& event) override;
+    void ServerRun() override;
+    void ServerOnConnect(ENetEvent& event) override;
+    void ServerOnDisconnect(ENetEvent& event) override;
+    void ServerOnReceive(ENetEvent& event) override;
 
     int GetPlayerIndex(ENetPeer* peer);
     int GetOtherPlayer(int index);

@@ -8,9 +8,9 @@ class DefaultClient {
     DefaultClient(const char* hostName, enet_uint16 port);        //hostname = destination of the connection
     virtual ~DefaultClient();
 
-    void DoTick();
-    virtual void OnReceive(ENetEvent& event);
-    virtual void OnDisconnect(ENetEvent& event);
+    void ClientDoTick();
+    virtual void ClientOnReceive(ENetEvent& event);
+    virtual void ClientOnDisconnect(ENetEvent& event);
 
     ENetHost* m_client;
 

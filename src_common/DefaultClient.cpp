@@ -68,7 +68,7 @@ DefaultClient::~DefaultClient() {
 ///////////////////////////////
 //Handle packets
 
-void DefaultClient::DoTick() {
+void DefaultClient::ClientDoTick() {
     if(!m_ready) return;
 
     ENetEvent event;
@@ -76,12 +76,12 @@ void DefaultClient::DoTick() {
         //printf("EVENT\n");
         switch (event.type) {
             case ENET_EVENT_TYPE_RECEIVE:
-                OnReceive(event);
+                ClientOnReceive(event);
                 enet_packet_destroy(event.packet);
                 break;
 
             case ENET_EVENT_TYPE_DISCONNECT:
-                OnDisconnect(event);
+                ClientOnDisconnect(event);
 
             default:
                 break;
@@ -89,7 +89,7 @@ void DefaultClient::DoTick() {
     }
 }
 
-void DefaultClient::OnReceive(ENetEvent& event) {
+void DefaultClient::ClientOnReceive(ENetEvent& event) {
     unsigned char* pdata = event.packet->data;
     size_t datasize = event.packet->dataLength;
     
@@ -99,6 +99,6 @@ void DefaultClient::OnReceive(ENetEvent& event) {
     printf("\n");
 }
 
-void DefaultClient::OnDisconnect(ENetEvent& event) {
+void DefaultClient::ClientOnDisconnect(ENetEvent& event) {
     //To override
 }

@@ -12,9 +12,9 @@ GameServer::GameServer(enet_uint16 port) : DefaultServer(port) {
     m_currentplayer = 0;
 }
 
-void GameServer::Run() {
+void GameServer::ServerRun() {
     while(m_running) {
-        DoTick();
+        ServerDoTick();
 
         if(m_gamestarted == false) {
             if(m_players[1] != NULL && m_players[0] != NULL) {  //if two players are connected
@@ -37,7 +37,7 @@ void GameServer::Run() {
 }
 
 
-void GameServer::OnConnect(ENetEvent& event) {
+void GameServer::ServerOnConnect(ENetEvent& event) {
     if(m_gamestarted == false) {
         if(m_players[0] == NULL) {      //if it's the first player to join
             m_players[0] = event.peer;
@@ -56,7 +56,7 @@ void GameServer::OnConnect(ENetEvent& event) {
     }
 }
 
-void GameServer::OnDisconnect(ENetEvent& event) {
+void GameServer::ServerOnDisconnect(ENetEvent& event) {
     printf("DISCONNECT\n");
     if(m_gamestarted) {     //if the game is started tell the other client the opponant disconnected
         m_gamestarted = false;  //stop the server
@@ -78,7 +78,7 @@ void GameServer::OnDisconnect(ENetEvent& event) {
     }
 }
 
-void GameServer::OnReceive(ENetEvent& event) {
+void GameServer::ServerOnReceive(ENetEvent& event) {
     unsigned char* pdata = event.packet->data;
     unsigned char packetid = pdata[0];
 

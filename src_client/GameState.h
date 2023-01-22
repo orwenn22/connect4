@@ -19,7 +19,7 @@ class GameState : public State , public DefaultClient {
     void Update() override;
     void Draw() override;
 
-    void OnReceive(ENetEvent& event) override;
+    void ClientOnReceive(ENetEvent& event) override;
 
     void Set(int x, int y, char val);
     char Get(int x, int y);

@@ -33,13 +33,13 @@ DefaultServer::~DefaultServer() {
 }
 
 
-void DefaultServer::Run() {
+void DefaultServer::ServerRun() {
     while(m_running) {
-        DoTick();
+        ServerDoTick();
     }
 }
 
-void DefaultServer::DoTick() {
+void DefaultServer::ServerDoTick() {
     if(!m_ready) return;
 
     ENetEvent event;
@@ -49,39 +49,39 @@ void DefaultServer::DoTick() {
 
             case ENET_EVENT_TYPE_CONNECT:
                 printf("connection from %x\n", event.peer->address.host);
-                OnConnect(event);
+                ServerOnConnect(event);
                 break;
 
 
             case ENET_EVENT_TYPE_DISCONNECT:
                 printf("disconnection from %x\n", event.peer->address.host);
-                OnDisconnect(event);
+                ServerOnDisconnect(event);
                 break;
             
 
             case ENET_EVENT_TYPE_RECEIVE:
                 printf("Received packet from %x\n", event.peer->address.host);
-                OnReceive(event);
+                ServerOnReceive(event);
                 enet_packet_destroy(event.packet);
                 break;
         }
     }
 }
 
-void DefaultServer::OnConnect(ENetEvent& event) {
+void DefaultServer::ServerOnConnect(ENetEvent& event) {
     //To overwrite
     enet_uint32 ip   = event.peer->address.host;
     enet_uint32 port = event.peer->address.port;
     printf("Connection from %x:%i\n", ip, port);
 }
 
-void DefaultServer::OnDisconnect(ENetEvent& event) {
+void DefaultServer::ServerOnDisconnect(ENetEvent& event) {
     enet_uint32 ip   = event.peer->address.host;
     enet_uint32 port = event.peer->address.port;
     printf("Disconnected %x:%i\n", ip, port);
 }
 
-void DefaultServer::OnReceive(ENetEvent& event) {
+void DefaultServer::ServerOnReceive(ENetEvent& event) {
     enet_uint32 ip   = event.peer->address.host;
     enet_uint32 port = event.peer->address.port;
 

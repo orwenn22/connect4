@@ -34,7 +34,7 @@ void GameState::OnParrentAdd() {
 }
 
 void GameState::Update() {
-    DoTick();   //client connection
+    ClientDoTick();   //client connection
 
     int mousex = GetMouseX();
     int mousey = GetMouseY();
@@ -84,7 +84,7 @@ void GameState::Draw() {
     }
 }
 
-void GameState::OnReceive(ENetEvent& event) {
+void GameState::ClientOnReceive(ENetEvent& event) {
     unsigned char* pdata = event.packet->data;
     unsigned char packetid = pdata[0];
 

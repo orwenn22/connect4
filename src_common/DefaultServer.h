@@ -8,12 +8,12 @@ class DefaultServer {
     DefaultServer(enet_uint16 port);
     virtual ~DefaultServer();
 
-    virtual void Run();
+    virtual void ServerRun();
 
-    void DoTick();
-    virtual void OnConnect(ENetEvent& event);
-    virtual void OnDisconnect(ENetEvent& event);
-    virtual void OnReceive(ENetEvent& event);
+    void ServerDoTick();
+    virtual void ServerOnConnect(ENetEvent& event);
+    virtual void ServerOnDisconnect(ENetEvent& event);
+    virtual void ServerOnReceive(ENetEvent& event);
 
     ENetAddress m_address;
     ENetHost * m_server;
