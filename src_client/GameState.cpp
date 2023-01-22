@@ -1,6 +1,6 @@
 #include "GameState.h"
 
-#include "MenuState.h"
+#include "ConnectMenuState.h"
 
 #include <Engine/Engine.h>
 
@@ -28,7 +28,7 @@ GameState::GameState(char* hostName, unsigned short port) : State() , DefaultCli
 void GameState::OnParrentAdd() {
     if(m_clientready == false) {  //check if the connection was successful
         printf("NO >:(\n");
-        m_manager->SetState(new MenuState("Connection failed"));
+        m_manager->SetState(new ConnectMenuState("Connection failed"));
         return;
     }
 }
@@ -110,7 +110,7 @@ void GameState::ClientOnReceive(ENetEvent& event) {
         break;
 
         case ID_OTHER_LEFT:
-            m_manager->SetState(new MenuState("Other player left"));
+            m_manager->SetState(new ConnectMenuState("Other player left"));
         break;
 
         default:

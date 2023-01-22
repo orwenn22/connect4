@@ -8,9 +8,9 @@
 
 #include <string>
 
-class MenuState : public State {
+class ConnectMenuState : public State {
     public:
-    MenuState(std::string splashtext);
+    ConnectMenuState(std::string splashtext);
 
     void Update() override;
     void Draw() override;

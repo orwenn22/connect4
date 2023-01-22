@@ -1,4 +1,4 @@
-#include "MenuState.h"
+#include "ConnectMenuState.h"
 
 #include "GameState.h"
 
@@ -22,7 +22,7 @@ int mystoi(char* str) {
 }
 
 
-MenuState::MenuState(std::string splashtext) : State() {
+ConnectMenuState::ConnectMenuState(std::string splashtext) : State() {
     m_splashtext = splashtext;
     m_selectedfield = 0;
     m_ipfieldcount = 0;
@@ -35,7 +35,7 @@ MenuState::MenuState(std::string splashtext) : State() {
         m_portfield[i] = 0;
 }
 
-void MenuState::Update() {
+void ConnectMenuState::Update() {
     if(IsKeyPressed(KEY_TAB)) {
         m_selectedfield++;
         if(m_selectedfield == 2)
@@ -61,7 +61,7 @@ void MenuState::Update() {
     }
 }
 
-void MenuState::Draw() {
+void ConnectMenuState::Draw() {
     DrawText("IP", 30, 62, 20, GRAY);
     DrawRectangleLines(60, 62, 200, 20, WHITE);
     DrawText(m_ipfield, 62, 62, 20, WHITE);
@@ -76,7 +76,7 @@ void MenuState::Draw() {
 }
 
 
-void MenuState::InputCharacter(char c) {
+void ConnectMenuState::InputCharacter(char c) {
     char* field;
     int* fieldcount;
     int sizeoffield;
